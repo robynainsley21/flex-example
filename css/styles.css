@@ -1,0 +1,135 @@
+*,
+*::after,
+*::before {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --primary: black;
+    --secondary: rgb(255, 255, 255);
+    --awesome: hsl(135, 53%, 37%, .7);
+}
+
+/* Container */
+.container {
+    /* Local custom variable */
+    /* top and bottom */
+    margin-block: 20px;
+    --numbOfRed: 123;
+    --numbOfOrange: 100;
+    --numbOfYellow: 18;
+    border-width: 5px 8px;
+    border-image: radial-gradient(120deg, var(--numbOfRed), var(--numbOfOrange), var(--numbOfYellow));
+}
+
+.container:has(#wrapper) {
+    background-color: red;
+}
+
+/* Display flex */
+.container :is(#example1, #example2),
+.button-wrapper {
+    display: flex;
+    gap: .6rem;
+}
+
+/* wrap: when there is no enough space place it to the 
+next line. Or Wrapping a gift in a box prevents it from coming out. */
+.container :is(#example2) {
+    flex-flow: row wrap;
+}
+
+.item {
+    display: grid;
+    grid-template-rows: 20rem 1fr auto;
+}
+
+.item>img {
+    width: 20rem;
+    aspect-ratio: 1/1;
+}
+
+/* Button */
+.button-wrapper {
+    justify-content: space-between;
+}
+
+.button-wrapper button {
+    border: 3px solid;
+    border-image: linear-gradient(red, var(--awesome)) 11 fill;
+}
+
+.image-animation {
+    background: linear-gradient(to right, green, yellow);
+    height: 300px;
+}
+
+img[alt="Image"] {
+    width: 5rem;
+    aspect-ratio: 1/1;
+    animation: animateLaptop 5s infinite;
+    transition: all .5s;
+}
+
+/* Animation */
+@keyframes animateLaptop {
+
+    /* 
+    if you don't want to use from and to, 
+    you are welcome to use % such as 
+    0%{}: animation start
+    100%{}: animation end
+    */
+    from {
+        transform: translateX(0px);
+    }
+
+    to {
+        transform: translateX(calc(100vw - 100px)) scale(1, 1) rotateX(123deg);
+    }
+}
+
+/*
+animation property:
+- name
+- duration
+- timing function
+- delay
+- iteration-count
+- direction
+- fill-mode
+- play-state 
+*/
+
+/* example1 */
+#example1{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.item{
+    margin: 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 1rem;
+    border: 1px solid;
+    border-radius: 10px;
+}
+
+.container > h2{
+    text-align: center;
+}
+
+/* example2 */
+#example2{
+    display: flex;
+    flex-direction: column;
+    flex-flow: column-reverse;
+    justify-content: center;
+    align-items: center;
+}
